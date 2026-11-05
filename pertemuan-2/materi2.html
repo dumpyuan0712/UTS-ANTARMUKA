@@ -1,0 +1,224 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>E Menu - Pondok Laras</title>
+
+        <style>
+            body {
+                background-color: #FDFBEE;
+                margin: 0;
+            }
+            .judul {
+                background-color: #123d2a;
+                width: 100%;
+                padding: 10px 0px 5px 0px;
+                text-align: center;
+                font-family: Georgia, Times, serif;
+            }
+            .logo1 {
+                position: absolute;
+                left: 0px;
+                top: 0px;        
+            }
+            .logo2 {
+                position: absolute;
+                right: -50px;
+                top: 0px;        
+            }
+            .judul h1 {
+                color: #FDFBEE; 
+                font-size: 40px;
+                margin: 0px;
+            }
+            .garis {
+                width: 80px;
+                height: 3px;
+                background-color: #e9ba3a;
+                margin: 15px auto;
+            }
+            .judul p {
+                color: #FDFBEE;
+                font-size: 20px;
+            }
+
+            .button {
+                background-color:#0B2E1D ;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+                font-size: 30px;
+            }
+            .button1 {  
+                color: #FDFBEE;
+                cursor: pointer;
+                border-top: 4px solid #FDFBEE;
+            }
+            .button1:hover {
+                background-color: darkgray;
+                border: 4px solid #FDFBEE;
+            }
+            .button2 {
+                color:#A8A8A8;
+                cursor: pointer;
+            }
+            .button2:hover {
+                background-color: darkgray;
+                color: #FDFBEE;
+                border: 4px solid #FDFBEE;
+            }
+            .button3 {
+                color: #A8A8A8;
+                cursor: pointer;
+            }
+            .button3:hover {
+                background-color: darkgray;
+                color: #FDFBEE;
+                border: 4px solid #FDFBEE;
+            }
+
+            .SUB-BAB h1 {
+                color: #0B2E1D;
+                margin: 30px 0px 0px 0px;
+                text-align: center;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+                font-size: 40px;
+                display: flex;
+                gap: 15px;  
+                justify-content: center;
+                align-items: center;
+            }
+            .SUB-BAB h1::after,
+            .SUB-BAB h1::before {
+                content: "";
+                width: 200px;
+                height: 3px;
+                background-color: rgb(234, 210, 114);
+            }
+
+            .MENU {
+                width: 90%;
+                margin: auto;
+                border-spacing: 15px;
+                border-collapse: separate;
+            }
+            .MENU td {
+                width: 33.33%;
+                border: 2px solid #c08552;
+                padding: 15px;
+                background-color: rgb(255, 255, 249);
+            }
+            .FOTO-MENU {
+                width: 100%;
+                height: 290px;
+                object-fit: cover;
+            }
+            .MENU h2{
+                color: #0B2E1D;
+                font-size: 30px;
+            }
+            .MENU p {
+                color: #0B2E1D;
+                font-size: 20px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+            .HARGA {
+                padding: 8px 15px;
+                background-color: #0B2E1D;
+                font-size: 25px;
+                color: white;
+                text-align: center;
+            }
+
+            .PENUTUP h1 {
+            color: #0B2E1D;
+            margin: 30px 0px 100px 0px;
+            text-align: center;
+            font-family: Georgia, 'Times New Roman', Times, serif;                
+            font-size: 30px;
+            display: flex;
+            gap: 15px;  
+            justify-content: center;
+            align-items: center;
+            }
+            .PENUTUP h1::after,
+            .PENUTUP h1::before {
+                content: "";
+                width: 200px;
+                height: 3px;
+                background-color: rgb(234, 210, 114);
+            }
+        </style>    
+    </head>
+
+    <body>
+        <div class="judul">
+            <div class="logo1"> <img src="Sayap Kiri.png" alt="Polar1" width="450" height="140"> </div>
+            <div class="logo2"> <img src="Sayap Kanan.png" alt="Polar2" width="450" height="140"> </div>
+            <h1>List Menu Pondok Laras</h1>
+            <div class="garis"></div>
+            <p>Nikmati Cita Rasa Rumahan, Hangat di Setiap Sajian Pondok Laras.</p>
+        </div>
+
+        <div class="button">
+            <table cellpadding="20px" cellspacing="0" width="100%">
+                <tr>
+                    <th width="33.33%" class="button1">Makanan Berat </th>
+                    <th width="33.33%" class="button2">Makanan Ringan </th>
+                    <th width="33.33%" class="button3">Minuman </th>    
+                </tr>
+            </table>
+        </div>
+
+        <div class="SUB-BAB">
+            <h1>MAKANAN BERAT</h1>
+        </div>
+
+            <table  class="MENU">
+                <tr>
+                    <td>
+                        <img src="Ayam Goreng Lengkuas.jpg" class="FOTO-MENU">
+                        <h2>Ayam Goreng Lengkuas</h2>
+                        <p>Ayam goreng gurih dengan taburan parutan lengkuas goreng yang melimpah dan renyah.</p>
+                        <div class="HARGA"><b> Rp. 25.000 / Porsi</b></div>   
+                    </td>
+                    <td>
+                        <img src="Ayam Bakar Polar.jpg" class="FOTO-MENU">
+                        <h2>Ayam Bakar Bumbu Bali</h2>
+                        <p>Ayam bakar gurih dengan baluran bumbu kecap meresap yang manis dan smokey.</p>
+                        <div class="HARGA"><b> Rp. 20.000 / Porsi</b></div>  
+                    </td>
+                    <td>
+                        <img src="Ayam Kecap Bawang.jpg" class="FOTO-MENU">
+                        <h2>Ayam Kecap Bawang</h2>
+                        <p>Ayam masak kuah kental dengan perpaduan rasa manis kecap dan gurih rempah yang meresap.</p>
+                        <div class="HARGA"><b> Rp. 20.000 / Porsi</b></div>  
+                    </td>
+                </tr>
+            </table>
+            
+            <table  class="MENU">
+                <tr>
+                    <td>
+                        <img src="Gurame Bakar Asam Manis.jpeg" class="FOTO-MENU">
+                        <h2>Gurame Bakar Kecap Cabe</h2>
+                        <p>Ikan gurame bakar lembut dengan baluran bumbu rempah bakar yang meresap manis, gurih, dan smokey.</p>
+                        <div class="HARGA"><b> Rp. 40.000 / Porsi</b></div>   
+                    </td>
+                    <td>
+                        <img src="Bawal Bakar Sambal Bawang.jpg" class="FOTO-MENU">
+                        <h2>Bawal Bakar Sambal Bawang</h2>
+                        <p>Ikan bawal bakar lembut berpadu sempurna dengan siraman sambal bawang segar yang pedas, gurih, dan aromatik.</p>
+                        <div class="HARGA"><b> Rp. 35.000 / Porsi</b></div>  
+                    </td>
+                    <td>
+                        <img src="Kakap Bakar Kokiwi.jpg" class="FOTO-MENU">
+                        <h2>Kakap Bakar Aroma Kiwi</h2>
+                        <p>Ikan kakap bakar lembut dengan sentuhan rasa buah kiwi yang segar, asam manis unik, dan aromatik.</p>
+                        <div class="HARGA"><b> Rp. 40.000 / Porsi</b></div>  
+                    </td>
+                </tr>
+            </table>
+
+            <div class="PENUTUP">
+                <h1>Selamat Menikmati - Pondok Laras</h1>
+            </div>
+    </body>
+    </html>

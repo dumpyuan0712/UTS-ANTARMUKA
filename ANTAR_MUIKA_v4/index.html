@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Viva Shop — Online Store</title>
+
+  <!-- Preconnect Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ============ 1. HEADER ============ -->
+  <header class="sk-header">
+    <div class="container sk-header-inner">
+      <a class="sk-logo" href="#"><i class="bi bi-cart3"></i>Viva<span>Shop</span></a>
+      <div class="search-wrapper sk-search">
+        <input type="text" class="search-input" placeholder="Search for products..." autocomplete="off" aria-label="Search">
+        <button type="button" aria-label="Search"><i class="bi bi-search"></i></button>
+        <div class="search-results"></div>
+      </div>
+      <div class="sk-actions">
+        <button class="sk-action" onclick="showToast('Sign in is not available in this demo.')"><i class="bi bi-person"></i><small class="lbl">Account</small></button>
+        <button class="sk-action" onclick="openWishlistModal()"><i class="bi bi-heart"></i><small class="lbl">Wishlist</small><span class="cart-count wishlist-count" style="display:none;">0</span></button>
+        <button class="sk-action" onclick="toggleCart()"><i class="bi bi-cart3"></i><small class="lbl">Cart</small><span class="cart-count" style="display:none;">0</span></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ 2. NAVIGATION ============ -->
+  <nav class="sk-nav">
+    <div class="container sk-nav-inner">
+      <a class="sk-nav-link" data-filter="all" onclick="filterByCategory('all')">All Categories <i class="bi bi-chevron-down"></i></a>
+      <a class="sk-nav-link" data-filter="clothing" onclick="filterByCategory('clothing')">Clothing</a>
+      <a class="sk-nav-link" data-filter="shoes" onclick="filterByCategory('shoes')">Shoes</a>
+      <a class="sk-nav-link" data-filter="bags" onclick="filterByCategory('bags')">Bags</a>
+      <a class="sk-nav-link" data-filter="watches" onclick="filterByCategory('watches')">Watches</a>
+      <a class="sk-nav-link" data-filter="accessories" onclick="filterByCategory('accessories')">Accessories</a>
+      <a class="sk-nav-link" data-filter="sale" onclick="filterByCategory('sale')">Deals</a>
+    </div>
+  </nav>
+
+  <!-- ============ 3. HERO ============ -->
+  <section class="container">
+    <div class="sk-hero">
+      <div class="sk-hero-text">
+        <h1>Upgrade<br>Your Everyday</h1>
+        <p>Top brands. Great prices. Better you.</p>
+        <button class="sk-btn" onclick="filterByCategory('all')">Shop Now</button>
+      </div>
+      <div class="sk-hero-img"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1400&fit=crop" alt=""></div>
+      <a class="sk-hero-tab" onclick="filterByCategory('new')">New<br>Arrivals<i></i></a>
+      <div class="sk-dots"><i class="on"></i><i></i><i></i></div>
+    </div>
+  </section>
+
+  <!-- ============ 4. CATEGORIES ============ -->
+  <section class="container sk-section">
+    <div class="sk-cats" id="categoriesGrid"></div>
+  </section>
+
+  <!-- ============ 5. PRODUCTS ============ -->
+  <section class="container sk-section" id="products">
+    <div class="sk-head">
+      <h2 id="productsTitle">Featured Products</h2>
+      <a id="viewAllLink" onclick="toggleViewAll()">View All <i class="bi bi-arrow-right"></i></a>
+    </div>
+    <div class="row g-3" id="productsGrid"></div>
+  </section>
+
+  <!-- ============ 6. PROMOTIONS ============ -->
+  <section class="container sk-section">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="sk-promo sk-promo-green">
+          <div><h3>Season Sale<br><span>Up to 50% OFF</span></h3><button class="sk-btn-white" onclick="filterByCategory('sale')">Shop Now</button></div>
+          <img id="promoImg1" alt="">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="sk-promo sk-promo-peach">
+          <div><h3>Top Brands<br><span>Best Deals</span></h3><button class="sk-btn-white" onclick="filterByCategory('all')">Shop Now</button></div>
+          <img id="promoImg2" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. NEWSLETTER ============ -->
+  <section class="container sk-section">
+    <div class="sk-news">
+      <div class="sk-news-info">
+        <span class="sk-news-icon"><i class="bi bi-envelope"></i></span>
+        <div><h4>Stay Updated</h4><p>Get the latest offers, new arrivals and exclusive deals.</p></div>
+      </div>
+      <form class="sk-news-form" id="newsletterForm">
+        <input type="email" placeholder="Enter your email" required aria-label="Email">
+        <button class="sk-btn" type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ 8. FOOTER ============ -->
+  <footer class="sk-footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-12 col-lg-5">
+          <a class="sk-logo" href="#"><i class="bi bi-cart3"></i>Viva<span>Shop</span></a>
+          <p class="mt-2 mb-0">Shop Smarter, Live Better.</p>
+          <div class="sk-social">
+            <a aria-label="Facebook"><i class="bi bi-facebook"></i></a><a aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a aria-label="YouTube"><i class="bi bi-youtube"></i></a><a aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="col-4 col-lg-2"><h6>Shop</h6><a onclick="filterByCategory('all')">All Products</a><a onclick="filterByCategory('new')">New Arrivals</a><a onclick="filterByCategory('featured')">Best Sellers</a><a onclick="filterByCategory('sale')">Deals</a></div>
+        <div class="col-4 col-lg-2"><h6>Help</h6><a>Track Order</a><a>Returns &amp; Refunds</a><a>Shipping Info</a><a>FAQs</a></div>
+        <div class="col-4 col-lg-2"><h6>About</h6><a>Our Story</a><a>Careers</a><a>Terms &amp; Conditions</a><a>Privacy Policy</a></div>
+      </div>
+      <div class="sk-copy">© 2026 VivaShop. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- ============ CART SIDEBAR ============ -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h5><i class="bi bi-bag-check me-2" style="color: var(--viva-emerald-light);"></i>Your Shopping Bag</h5>
+      <button class="cart-close" onclick="toggleCart()" aria-label="Close Cart"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <!-- Rendered by JS -->
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+      <div class="cart-totals">
+        <div class="cart-total-row">
+          <span>Subtotal</span>
+          <span id="cartSubtotal">$0.00</span>
+        </div>
+        <div class="cart-total-row">
+          <span>Shipping (free over $200)</span>
+          <span id="cartShipping" class="text-success fw-bold">FREE</span>
+        </div>
+        <div class="cart-total-row total">
+          <span>Total Estimation</span>
+          <span id="cartTotal" style="color: var(--viva-emerald-light); font-size: 1.3rem;">$0.00</span>
+        </div>
+      </div>
+      <button class="cart-checkout" onclick="checkout()">
+        Checkout <i class="bi bi-arrow-right ms-2"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============ WISHLIST MODAL ============ -->
+  <div class="modal fade" id="wishlistModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px;">
+        <div class="modal-header" style="border-bottom: 1px solid var(--border-color); padding: 20px 24px;">
+          <h5 class="modal-title font-heading mb-0" style="color: var(--text-primary);">
+            <i class="bi bi-heart-fill me-2" style="color: var(--viva-gold);"></i>Your Saved Wishlist
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4" id="wishlistModalBody">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ QUICK VIEW MODAL ============ -->
+  <div class="modal fade modal-quick-view" id="quickViewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" style="z-index: 10;" aria-label="Close"></button>
+          <div class="row g-0">
+            <div class="col-md-6 qv-image">
+              <img src="" alt="Product Detail">
+            </div>
+            <div class="col-md-6 qv-info">
+              <div class="qv-category">CATEGORY</div>
+              <h3 style="color: var(--text-primary);">Product Name</h3>
+              <div class="qv-rating mb-2" style="color:var(--viva-gold); font-size:.85rem;"></div>
+              <div class="qv-price mb-3"></div>
+              <p class="qv-desc"></p>
+
+              <div class="qv-options">
+                <div class="qv-option-label">Selection Size</div>
+                <div class="size-options">
+                  <button class="size-btn" onclick="this.parentElement.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">XS</button>
+                  <button class="size-btn active" onclick="this.parentElement.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">S</button>
+                  <button class="size-btn" onclick="this.parentElement.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">M</button>
+                  <button class="size-btn" onclick="this.parentElement.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">L</button>
+                  <button class="size-btn" onclick="this.parentElement.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">XL</button>
+                </div>
+
+                <div class="qv-option-label mt-3">Color Palette</div>
+                <div class="color-options">
+                  <div class="color-swatch active" style="background:#1a6dff;" title="Blue" onclick="this.parentElement.querySelectorAll('.color-swatch').forEach(b=>b.classList.remove('active'));this.classList.add('active')"></div>
+                  <div class="color-swatch" style="background:#0b1d3a;" title="Navy" onclick="this.parentElement.querySelectorAll('.color-swatch').forEach(b=>b.classList.remove('active'));this.classList.add('active')"></div>
+                  <div class="color-swatch" style="background:#ff7a6b;" title="Coral" onclick="this.parentElement.querySelectorAll('.color-swatch').forEach(b=>b.classList.remove('active'));this.classList.add('active')"></div>
+                  <div class="color-swatch" style="background:#e8dcc8;" title="Sand" onclick="this.parentElement.querySelectorAll('.color-swatch').forEach(b=>b.classList.remove('active'));this.classList.add('active')"></div>
+                </div>
+              </div>
+
+              <button class="btn-viva w-100 qv-add-btn" onclick="">
+                <i class="bi bi-bag-plus me-2"></i>Add to Bag
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ BACK TO TOP ============ -->
+  <button class="back-to-top" id="backToTop" title="Back to Top" aria-label="Back to top">
+    <i class="bi bi-chevron-up"></i>
+  </button>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- App JS -->
+  <script src="js/app.js"></script>
+</body>
+</html>

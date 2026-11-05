@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('vivaTheme')||'dark')}catch(e){}</script>
+  <title>Viva Storefront — Modern Luxury</title>
+
+  <!-- Preconnect Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ============ MODERN PRELOADER ============ -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-logo"><span>V</span>iva</div>
+    <div class="preloader-bar"></div>
+    <p style="color: rgba(255,255,255,0.6); font-size: 0.8rem; margin-top: 16px; letter-spacing: 2px; text-transform: uppercase;">Modern Luxury Experience</p>
+  </div>
+
+  <!-- ============ CUSTOM LUXURY CURSOR ============ -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ============ ANNOUNCEMENT BAR ============ -->
+  <div class="announcement-bar">
+    ✨ Autumn Edit: Free Worldwide Express Delivery on orders over $200 — <a href="#products">Explore Collection</a>
+  </div>
+
+  <!-- ============ NAVBAR ============ -->
+  <nav class="navbar navbar-expand-lg navbar-viva sticky-top at-top" id="mainNavbar">
+    <div class="container">
+      <a class="navbar-brand navbar-brand-viva" href="#">
+        <span>V</span>iva
+      </a>
+
+      <!-- Theme & Cart mobile icons -->
+      <div class="d-flex align-items-center gap-2 d-lg-none">
+        <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme" aria-label="Toggle Theme">
+          <i class="bi bi-moon-stars" id="mobileThemeIcon"></i>
+        </button>
+        <div class="nav-icon" onclick="openWishlistModal()" title="Wishlist">
+          <i class="bi bi-heart"></i>
+          <span class="cart-count wishlist-count" style="display:none; background: var(--viva-gold); color: var(--viva-forest);">0</span>
+        </div>
+        <div class="nav-icon" onclick="toggleCart()" title="Cart">
+          <i class="bi bi-bag"></i>
+          <span class="cart-count mobile-cart-count" style="display:none;">0</span>
+        </div>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-label="Menu">
+          <i class="bi bi-list fs-3" style="color: var(--text-primary);"></i>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="mainNav">
+        <div class="search-wrapper d-lg-none my-3">
+          <input type="text" class="search-input" placeholder="Search..." autocomplete="off" aria-label="Search">
+          <button type="button" aria-label="Search"><i class="bi bi-search"></i></button>
+          <div class="search-results"></div>
+        </div>
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link nav-link-viva active" href="#hero">Home</a></li>
+          
+          <!-- MEGA MENU TRIGGER -->
+          <li class="nav-item mega-menu-trigger">
+            <a class="nav-link nav-link-viva" href="#categories">
+              Categories <i class="bi bi-chevron-down ms-1" style="font-size: 0.72rem;"></i>
+            </a>
+            <div class="mega-menu">
+              <div class="row g-4">
+                <div class="col-4 mega-menu-col">
+                  <h6>Curated Luxury</h6>
+                  <a href="#products" onclick="filterByCategory('clothing')"><i class="bi bi-tag-fill text-success"></i> Haute Clothing</a>
+                  <a href="#products" onclick="filterByCategory('bags')"><i class="bi bi-bag-check-fill text-success"></i> Leather Bags</a>
+                  <a href="#products" onclick="filterByCategory('watches')"><i class="bi bi-clock-fill text-success"></i> Swiss Watches</a>
+                </div>
+                <div class="col-4 mega-menu-col">
+                  <h6>Lifestyle</h6>
+                  <a href="#products" onclick="filterByCategory('shoes')"><i class="bi bi-gem text-success"></i> Handcrafted Shoes</a>
+                  <a href="#products" onclick="filterByCategory('accessories')"><i class="bi bi-sunglasses text-success"></i> Fine Accessories</a>
+                  <a href="#featured"><i class="bi bi-lightning-charge-fill text-warning"></i> Autumn Flash Deal</a>
+                </div>
+                <div class="col-4 mega-menu-col">
+                  <h6>Collections</h6>
+                  <a href="#products" onclick="setFilter('new', document.querySelector('[data-filter=new]'))"><i class="bi bi-stars text-warning"></i> New Arrivals 2026</a>
+                  <a href="#products" onclick="setFilter('sale', document.querySelector('[data-filter=sale]'))"><i class="bi bi-percent text-danger"></i> Exclusive Sale</a>
+                  <div class="mt-3 p-3 rounded" style="background: var(--bg-secondary); border: 1px solid var(--border-color);">
+                    <span class="d-block fw-bold text-success" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">Viva Privilege</span>
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">Complimentary gift box with orders $300+</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item"><a class="nav-link nav-link-viva" href="#products">Shop</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-viva" href="#featured">Deals</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-viva" href="#testimonials">Reviews</a></li>
+        </ul>
+
+        <div class="d-none d-lg-flex align-items-center gap-2">
+          <!-- Search -->
+          <div class="search-wrapper" style="width: 220px;">
+            <input type="text" class="search-input" placeholder="Search..." autocomplete="off" aria-label="Search">
+            <button type="button" aria-label="Search"><i class="bi bi-search"></i></button>
+            <div class="search-results"></div>
+          </div>
+
+          <!-- Dark/Light Mode Toggle -->
+          <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode" aria-label="Toggle Dark Mode">
+            <i class="bi bi-moon-stars" id="themeIcon"></i>
+          </button>
+
+          <!-- Wishlist Trigger -->
+          <div class="nav-icon" id="wishlistTrigger" onclick="openWishlistModal()" title="View Wishlist">
+            <i class="bi bi-heart"></i>
+            <span class="cart-count wishlist-count" id="wishlistCount" style="display:none; background: var(--viva-gold); color: var(--viva-forest);">0</span>
+          </div>
+
+          <!-- Cart Trigger -->
+          <div class="nav-icon" onclick="toggleCart()" title="View Cart">
+            <i class="bi bi-bag"></i>
+            <span class="cart-count" id="cartCount" style="display:none;">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ HERO WITH VIDEO BACKGROUND ============ -->
+  <section class="hero" id="hero">
+    <!-- Video element with poster fallback -->
+    <video class="hero-video-bg" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1600&fit=crop">
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-set-of-plateware-and-cutlery-on-a-table-42861-large.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-particles" id="heroParticles"></div>
+
+    <div class="container position-relative" style="z-index: 3;">
+      <div class="row align-items-center">
+        <div class="col-lg-6 hero-content">
+          <div class="hero-badge reveal">
+            <i class="bi bi-gem"></i> Autumn Edition 2026
+          </div>
+          <h1 class="reveal">Elevate Your <span class="highlight">Luxury</span> With Modern Elegance</h1>
+          <p class="reveal">Timeless craftsmanship in a refined palette of violet, coral and gold, made for people with a discerning eye.</p>
+          <div class="d-flex gap-3 flex-wrap reveal">
+            <a href="#products" class="btn-viva">
+              <i class="bi bi-bag-check me-2"></i>Explore Collection
+            </a>
+            <a href="#featured" class="btn-viva-outline text-white border-white">
+              Limited Deals
+            </a>
+          </div>
+          <div class="hero-stats reveal">
+            <div class="hero-stat">
+              <h3>25K+</h3>
+              <p>Clients Worldwide</p>
+            </div>
+            <div class="hero-stat">
+              <h3>600+</h3>
+              <p>Curated Items</p>
+            </div>
+            <div class="hero-stat">
+              <h3>4.98</h3>
+              <p>Trustpilot Rating</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 hero-image d-none d-lg-block">
+          <div class="hero-img-wrapper reveal reveal-right">
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=700&h=800&fit=crop" alt="Luxury Fashion" loading="lazy">
+          </div>
+          <div class="hero-float-card card-1">
+            <div class="float-card-icon" style="background:rgba(255,200,87,.16);color:var(--viva-neon);">
+              <i class="bi bi-truck"></i>
+            </div>
+            <div class="float-card-title">Express Worldwide</div>
+            <div class="float-card-value">Free Shipping $200+</div>
+          </div>
+          <div class="hero-float-card card-2">
+            <div class="float-card-icon" style="background:rgba(212,164,90,.15);color:var(--viva-gold);">
+              <i class="bi bi-shield-check"></i>
+            </div>
+            <div class="float-card-title">Authenticity Certified</div>
+            <div class="float-card-value">100% Genuine Luxury</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES STRIP ============ -->
+  <section class="features-strip">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-6 col-lg-3 reveal">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="bi bi-truck"></i></div>
+            <div>
+              <h6>Complimentary Delivery</h6>
+              <p>Orders above $200</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3 reveal">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="bi bi-arrow-repeat"></i></div>
+            <div>
+              <h6>Hassle-Free Returns</h6>
+              <p>30 days return policy</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3 reveal">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="bi bi-shield-lock"></i></div>
+            <div>
+              <h6>Encrypted Checkout</h6>
+              <p>Bank-level 256-bit SSL</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3 reveal">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="bi bi-gem"></i></div>
+            <div>
+              <h6>Concierge Service</h6>
+              <p>24/7 dedicated support</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CATEGORIES ============ -->
+  <section class="section-padding" id="categories">
+    <div class="container">
+      <div class="text-center section-header reveal">
+        <h2 class="section-title">Signature Collections</h2>
+        <p class="section-subtitle">Exquisite aesthetics designed to elevate your everyday statement</p>
+        <div class="accent-line"></div>
+      </div>
+      <div class="row g-4 justify-content-center" id="categoriesGrid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRODUCTS WITH 3D TILT ============ -->
+  <section class="section-padding" style="background: var(--bg-secondary);" id="products">
+    <div class="container">
+      <div class="text-center section-header reveal">
+        <h2 class="section-title">Curated Selection</h2>
+        <p class="section-subtitle">Handcrafted essentials selected for distinguished taste and enduring quality</p>
+        <div class="accent-line"></div>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="filter-tabs reveal">
+        <button class="filter-tab active" data-filter="all" onclick="setFilter('all', this)">All Items</button>
+        <button class="filter-tab" data-filter="new" onclick="setFilter('new', this)">New Arrivals</button>
+        <button class="filter-tab" data-filter="sale" onclick="setFilter('sale', this)">Sale Highlights</button>
+        <button class="filter-tab" data-filter="clothing" onclick="setFilter('clothing', this)">Apparel</button>
+        <button class="filter-tab" data-filter="bags" onclick="setFilter('bags', this)">Bags & Cases</button>
+        <button class="filter-tab" data-filter="watches" onclick="setFilter('watches', this)">Timepieces</button>
+        <button class="filter-tab" data-filter="shoes" onclick="setFilter('shoes', this)">Footwear</button>
+        <button class="filter-tab" data-filter="accessories" onclick="setFilter('accessories', this)">Accessories</button>
+      </div>
+
+      <div class="row g-4" id="productsGrid">
+        <!-- Rendered by JS with 3D Tilt support -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURED SALE BANNER ============ -->
+  <section class="section-padding" id="featured">
+    <div class="container">
+      <div class="featured-banner reveal reveal-scale">
+        <div class="row align-items-center g-0">
+          <div class="col-lg-7">
+            <div class="featured-content">
+              <span class="featured-label">Viva Privilege Offer</span>
+              <h2>Autumn Private Sale — Up to 40% Off</h2>
+              <p>Indulge in limited seasonal editions. Crafted from sustainable materials and accompanied by our signature collector's velvet dust bag.</p>
+              <div class="countdown">
+                <div class="countdown-item">
+                  <div class="countdown-value" id="cd-days">00</div>
+                  <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                  <div class="countdown-value" id="cd-hours">00</div>
+                  <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                  <div class="countdown-value" id="cd-minutes">00</div>
+                  <span class="countdown-label">Mins</span>
+                </div>
+                <div class="countdown-item">
+                  <div class="countdown-value" id="cd-seconds">00</div>
+                  <span class="countdown-label">Secs</span>
+                </div>
+              </div>
+              <a href="#products" class="btn-gold" onclick="setFilter('sale', document.querySelector('[data-filter=sale]'))">
+                <i class="bi bi-lightning-fill me-1"></i> Claim Privilege Offer
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-5 d-none d-lg-block" style="height: 100%; min-height: 440px;">
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&h=500&fit=crop" alt="Autumn Private Sale" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section class="section-padding" style="background: var(--bg-secondary);" id="testimonials">
+    <div class="container">
+      <div class="text-center section-header reveal">
+        <h2 class="section-title">Client Stories</h2>
+        <p class="section-subtitle">Real experiences shared by our discerning patrons across the globe</p>
+        <div class="accent-line"></div>
+      </div>
+      <div class="row g-4" id="testimonialsGrid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ NEWSLETTER ============ -->
+  <section class="newsletter-section" id="newsletter">
+    <div class="container text-center position-relative" style="z-index: 2;">
+      <div class="reveal">
+        <h2>Join The Viva Circle</h2>
+        <p class="mb-4">Receive private invitations, seasonal previews, and editorial insights directly to your inbox.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Your corporate or personal email..." required aria-label="Email address">
+          <button type="submit">Join Privilege</button>
+        </form>
+        <p class="mt-3" style="font-size: 0.8rem; color: rgba(255,255,255,0.45);">Strict confidentiality. We never share customer information.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="footer-brand"><span>V</span>iva</div>
+          <p class="footer-desc">Bespoke fashion, fine timepieces, and lifestyle artifacts designed with refined aesthetic proportion and ethical precision.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" aria-label="X Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h5>Departments</h5>
+          <a href="#products" onclick="filterByCategory('clothing')">High Fashion</a>
+          <a href="#products" onclick="filterByCategory('bags')">Fine Bags</a>
+          <a href="#products" onclick="filterByCategory('watches')">Horology</a>
+          <a href="#products" onclick="filterByCategory('shoes')">Footwear</a>
+          <a href="#products" onclick="filterByCategory('accessories')">Accessories</a>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h5>Services</h5>
+          <a href="#">Bespoke Styling</a>
+          <a href="#">Global Shipping</a>
+          <a href="#">Certificate of Origin</a>
+          <a href="#">Size & Fit Guide</a>
+          <a href="#">VIP Concierge</a>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h5>Maison</h5>
+          <a href="#">Our Heritage</a>
+          <a href="#">Craftsmanship</a>
+          <a href="#">Eco Sustainability</a>
+          <a href="#">Press Editorial</a>
+          <a href="#">Careers</a>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h5>Policies</h5>
+          <a href="#">Privacy Protocol</a>
+          <a href="#">Terms of Sale</a>
+          <a href="#">Security Standards</a>
+          <a href="#">Cookie Preferences</a>
+          <a href="#">Legal Notice</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Viva Storefront. Handcrafted in Violet &amp; Coral.</p>
+        <div class="payment-icons">
+          <span class="payment-icon">VISA VIP</span>
+          <span class="payment-icon">MASTERCARD</span>
+          <span class="payment-icon">AMEX CENTURION</span>
+          <span class="payment-icon">APPLE PAY</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ CART SIDEBAR ============ -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h5><i class="bi bi-bag-check me-2" style="color: var(--viva-emerald-light);"></i>Your Shopping Bag</h5>
+      <button class="cart-close" onclick="toggleCart()" aria-label="Close Cart"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <!-- Rendered by JS -->
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none;">
+      <div class="cart-totals">
+        <div class="cart-total-row">
+          <span>Subtotal</span>
+          <span id="cartSubtotal">$0.00</span>
+        </div>
+        <div class="cart-total-row">
+          <span>Shipping (free over $200)</span>
+          <span id="cartShipping" class="text-success fw-bold">FREE</span>
+        </div>
+        <div class="cart-total-row total">
+          <span>Total Estimation</span>
+          <span id="cartTotal" style="color: var(--viva-emerald-light); font-size: 1.3rem;">$0.00</span>
+        </div>
+      </div>
+      <button class="cart-checkout" onclick="checkout()">
+        Proceed to Secure Checkout <i class="bi bi-arrow-right ms-2"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============ WISHLIST MODAL ============ -->
+  <div class="modal fade" id="wishlistModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px;">
+        <div class="modal-header" style="border-bottom: 1px solid var(--border-color); padding: 20px 24px;">
+          <h5 class="modal-title font-heading mb-0" style="color: var(--text-primary);">
+            <i class="bi bi-heart-fill me-2" style="color: var(--viva-gold);"></i>Your Saved Wishlist
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4" id="wishlistModalBody">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ QUICK VIEW MODAL ============ -->
+  <div class="modal fade modal-quick-view" id="quickViewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" style="z-index: 10;" aria-label="Close"></button>
+          <div class="row g-0">
+            <div class="col-md-6 qv-image">
+              <img src="" alt="Product Detail">
+            </div>
+            <div class="col-md-6 qv-info">
+              <div class="qv-category">CATEGORY</div>
+              <h3 style="color: var(--text-primary);">Product Name</h3>
+              <div class="qv-rating mb-2" style="color:var(--viva-gold); font-size:.85rem;"></div>
+              <div class="qv-price mb-3"></div>
+              <p class="qv-desc"></p>
+
+              <div class="qv-options">
+                <div class="qv-option-label">Selection Size</div>
+                <div class="size-options">
+                  <button class="size-btn" onclick="this.parentElement.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">XS</button>
+                  <button class="size-btn active" onclick="this.parentElement.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">S</button>
+                  <button class="size-btn" onclick="this.parentElement.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">M</button>
+                  <button class="size-btn" onclick="this.parentElement.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">L</button>
+                  <button class="size-btn" onclick="this.parentElement.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">XL</button>
+                </div>
+
+                <div class="qv-option-label mt-3">Color Palette</div>
+                <div class="color-options">
+                  <div class="color-swatch active" style="background:#6c4cf1;" title="Violet" onclick="this.parentElement.querySelectorAll('.color-swatch').forEach(b=>b.classList.remove('active'));this.classList.add('active')"></div>
+                  <div class="color-swatch" style="background:#1a1625;" title="Ink" onclick="this.parentElement.querySelectorAll('.color-swatch').forEach(b=>b.classList.remove('active'));this.classList.add('active')"></div>
+                  <div class="color-swatch" style="background:#ff7a6b;" title="Coral" onclick="this.parentElement.querySelectorAll('.color-swatch').forEach(b=>b.classList.remove('active'));this.classList.add('active')"></div>
+                  <div class="color-swatch" style="background:#e8dcc8;" title="Sand" onclick="this.parentElement.querySelectorAll('.color-swatch').forEach(b=>b.classList.remove('active'));this.classList.add('active')"></div>
+                </div>
+              </div>
+
+              <button class="btn-viva w-100 qv-add-btn" onclick="">
+                <i class="bi bi-bag-plus me-2"></i>Add to Bag
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ BACK TO TOP ============ -->
+  <button class="back-to-top" id="backToTop" title="Back to Top" aria-label="Back to top">
+    <i class="bi bi-chevron-up"></i>
+  </button>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- App JS -->
+  <script src="js/app.js"></script>
+</body>
+</html>
